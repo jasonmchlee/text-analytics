@@ -1,0 +1,140 @@
+---
+title: "Pulling Tweets for Tokenization"
+author: "Jason Lee"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+In this project I will use Twitter API to pull live tweets directly into R studio. The date is currently 01/031/2020, and I will be pulling tweets focused on the US, Asia and Europe economies. 
+
+After pulling all the tweets I will tokenize the data and remove stop words. This will give me a better understanding if there are any related tweets being shared around the world at the same point of time.
+
+## Libraries
+```{r message=FALSE, include=FALSE}
+library(twitteR)
+library(tm)
+library(dplyr)
+library(tidytext)
+library(tidyr)
+library(stringr)
+library(scales)
+library(ggplot2)
+```
+
+## Connecting Twitter API keys
+Next I will link my personal Twitter API codes into R. The code will be hiden because everyone has their own personal codes and they should not be shared.
+
+
+```{r twitter, echo=FALSE}
+consumer_key <- '0YEXdHENHiLU2H54idY1FPqPn'
+consumer_secret <- 'vGhsZFnneTimKTe7Wvnm2jRqmutHWqU1QF1yaFKyDy0QFRSQvz'
+access_token <- '76462304-RJ6Ut4gFKK45SZAo7eHML8sJbO7bv7ztWsrB57N6i'
+access_secret <- 'MCD5GJpcywF2dy1okso2laWNd3sOHlfd5bDoSm0kke2cG'
+```
+
+## Link Twitter Authentication
+
+
+```{r link, echo=TRUE}
+setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
+```
+
+## Pull Tweets from Twitter
+
+Now we have Twitter all set up, I will pull 3 specific datasets based on hashtags.
+  
+  - USA Economy
+  - Europe Economy
+  - Asia Economy
+
+### USA Economy
+```{r echo=TRUE, warning=FALSE}
+USA <- twitteR::searchTwitter('#USA + #Economy', n = 400, since = '2020-01-01', retryOnRateLimit = 1e3)
+u = twitteR::twListToDF(USA)
+```
+
+### Europe Economy
+```{r echo=TRUE, warning=FALSE}
+EU <- twitteR::searchTwitter('#EU + #Economy', n = 400, since = '2020-01-01', retryOnRateLimit = 1e3)
+e = twitteR::twListToDF(EU)
+```
+
+### China Economy
+```{r echo=TRUE, warning=FALSE}
+ASIA <- twitteR::searchTwitter('#Asia + #Economy', n = 400, since = '2020-01-01', retryOnRateLimit = 1e3)
+a = twitteR::twListToDF(ASIA)
+```
+
+## Tokenize datasets
+Tokenize dataframes and remove stop words
+
+### USA Tokens
+```{r echo=TRUE, , echo=TRUE}
+tidy_usa <- u %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words)
+```
+
+### Europe Tokens
+```{r echo=TRUE, , echo=TRUE}
+tidy_eu <- e %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words)
+```
+
+### Asia Tokens
+```{r echo=TRUE, , echo=TRUE}
+tidy_asia <- a %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words)
+```
+
+
+
+## Merge Datasets
+```{r , echo=TRUE}
+frequency <- bind_rows(mutate(tidy_usa, author="USA"),
+                       mutate(tidy_eu, author= "EU"),
+                       mutate(tidy_asia, author="ASIA")
+                        )%>%#closing bind_rows
+  mutate(word=str_extract(word, "[a-z']+")) %>%
+  count(author, word) %>%
+  group_by(author) %>%
+  mutate(proportion = n/sum(n))%>%
+  select(-n) %>%
+  spread(author, proportion) %>%
+  gather(author, proportion, `EU`, `ASIA`)
+head(frequency)
+```
+
+
+## Plot Tokens
+```{r , echo=TRUE}
+ggplot(frequency, aes(x=proportion, y=`USA`, 
+                      color = abs(`USA`- proportion)))+
+  geom_abline(color="grey40", lty=2)+
+  geom_jitter(alpha=.1, size=2.5, width=0.3, height=0.3)+
+  geom_text(aes(label=word), check_overlap = TRUE, vjust=1.5) +
+  scale_x_log10(labels = percent_format())+
+  scale_y_log10(labels= percent_format())+
+  scale_color_gradient(limits = c(0,0.001), low = "darkslategray4", high = "gray75")+
+  facet_wrap(~author, ncol=2)+
+  theme(legend.position = "none")+
+  labs(y= "USA", x=NULL)
+```
+
+Looking at the key words used  we can see that if we benchmark the US compared to Asia or Europe there are high searches for China, Health and Virus related news. This is during the same time as the Coronavirus outbreak of January 2020.
+
+
+## Correlation Test
+```{r , echo=TRUE}
+cor.test(data=frequency[frequency$author == "EU",],
+         ~proportion + `USA`)
+
+cor.test(data=frequency[frequency$author == "ASIA",],
+         ~proportion + `USA`)
+
+```
+
+We can see that both correlations are strong showing that when users are hashtagging #Economy they are also searching news related to US, Europe and Asia. 
