@@ -7,3 +7,5 @@ Column names include:
  - Product - which model the review is being left for.
  - Stars - what was the rating given for the review out of 5.
  - Review - the full review left by the customer on a single product.
+
+The goal is to understand the sentiment behind the words used, through tokenization and a variety of libraries  in R. Studying the positive ad negative language used to determine if customers are happy or upset about the iRobot products.
