@@ -1,14 +1,20 @@
 # Overview
 In this report, I will utilize text analytics on the annual 2019 Corporate Social Responsibility (CSR) reports submitted by Apple, Google, and Microsoft. The CSR report represents information that explains how companies are giving back to the community, pushing towards sustainability and other related practices or goals they look to achieve in the direction of being a better company for the people, society, and environment. Each of these companies dominates the technology industry, with their ability to collect data on their customers. However, the tech industry is under scrutiny with data breaches (Google & Facebook) and battery performance scandals (Apple) in recent years.
 
+<p align="center">
+<img src="https://github.com/jasonmchlee/text-analytics/blob/master/Corporate%20Social%20Responsibility%20Reports/Cover%20Photo.png" width="400" height="250">
+</p>
+
 # Tokenization
 Tokenizing each companies report gives us a better understanding of the main topic of focus.   It is important to note that Microsoft’s CSR report is half the length compared to Apple and Google. Below are the top 3 most frequently used words in their respective CSR reports.
 
+  
 Apple |	Google	| Microsoft
 --- | -------- | -------
 Energy (341)|	Energy (332)|	Learn (94)
 Renewable (197)	| Data (165)	| AI (63)
 Data (176) |	Carbon (146)	| Human (52)
+
 
 Apple and Google have very similar top occurring words – Energy and Data. Apple and Google both are large enterprises that have to store and collect user data every minute. The focus topics of energy and data signals that they are trying to reassure that they are taking strong energy-saving procedures to manage their data intake. With databases and data centers scattered all over the world, it is reassuring to see that they are taking the necessary steps to improve energy consumption. In comparison, we look at Microsoft’s top 3 words, and they are more focused on the actual usability of their technology as it relates to learn, AI ,and human. These points position Microsoft’s report in finding ways to utilize their technology advancements for ethical practices.
 
@@ -35,7 +41,9 @@ Combining this sentiment analysis with the tokenization, Apple and Google are en
 # Correlogram and Correlation
 Below we can see a correlogram that compares Apple against Google and Microsoft. This information will help us understand if there are any trends in the technology industry.
 
+<p align="center">
 <img src="https://github.com/jasonmchlee/text-analytics/blob/master/Corporate%20Social%20Responsibility%20Reports/Correlogram.png?" width="700" height="400">
+</p>
 
 Correlation	|Google|	Microsoft
 ---|---|----
@@ -47,7 +55,9 @@ Microsoft has already made it clear the focus of their report is technology, so 
 Data privacy was a big topic in 2019, and it is important to see if this correlation remains consistent in other leading tech companies. The main company which came under excessive scrutiny for their data privacy laws in 2019 was Facebook. Surprisingly, Facebook does not have a CSR report published for their audience. Since Facebook does not have a CSR report, I extracted text from its sustainability page on their website. Below is a nrc library word cloud analyzing Facebook’s website.
 
 ### Facebook – Word Cloud, NRC Library
+<p align="center">
 <img src="https://github.com/jasonmchlee/text-analytics/blob/master/Corporate%20Social%20Responsibility%20Reports/Word%20Cloud.png?raw=true" width="400" height="400">
+</p>
 
 
 Similarly, we can see Facebook's main topics are trust and positivity. Understandably, Facebook is in the process of rebuilding its public relations after its data breach affected 267 million users. They are trying to make amends, and are following Apple and Google in the route of reassuring their customers that data and trust, have a positive direction in the company. Nevertheless, one can be skeptical as to why Facebook did not release an official report since they have felt the bulk of the backlash from government officials last year. Mark Zukerberg could be positioning the company in a way to avoid admitting to the guilt of the data breach, which shows the lack of empathy towards their stakeholders by omitting a CSR report.
