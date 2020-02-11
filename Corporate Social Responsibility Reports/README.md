@@ -35,7 +35,7 @@ Combining this sentiment analysis with the tokenization, Apple and Google are en
 # Correlogram and Correlation
 Below we can see a correlogram that compares Apple against Google and Microsoft. This information will help us understand if there are any trends in the technology industry.
 
-(See PDF for Graph) 
+<img src="https://github.com/jasonmchlee/text-analytics/blob/master/Corporate%20Social%20Responsibility%20Reports/Correlogram.png?" width="700" height="400">
 
 Correlation	|Google|	Microsoft
 ---|---|----
@@ -46,8 +46,9 @@ Microsoft has already made it clear the focus of their report is technology, so 
 # Word Cloud, NRC Library
 Data privacy was a big topic in 2019, and it is important to see if this correlation remains consistent in other leading tech companies. The main company which came under excessive scrutiny for their data privacy laws in 2019 was Facebook. Surprisingly, Facebook does not have a CSR report published for their audience. Since Facebook does not have a CSR report, I extracted text from its sustainability page on their website. Below is a nrc library word cloud analyzing Facebook’s website.
 
-(See PDF for Graph) 
-Facebook – Word Cloud, NRC Library
+### Facebook – Word Cloud, NRC Library
+<img src="https://github.com/jasonmchlee/text-analytics/blob/master/Corporate%20Social%20Responsibility%20Reports/Word%20Cloud.png?raw=true" width="400" height="400">
+
 
 Similarly, we can see Facebook's main topics are trust and positivity. Understandably, Facebook is in the process of rebuilding its public relations after its data breach affected 267 million users. They are trying to make amends, and are following Apple and Google in the route of reassuring their customers that data and trust, have a positive direction in the company. Nevertheless, one can be skeptical as to why Facebook did not release an official report since they have felt the bulk of the backlash from government officials last year. Mark Zukerberg could be positioning the company in a way to avoid admitting to the guilt of the data breach, which shows the lack of empathy towards their stakeholders by omitting a CSR report.
 
