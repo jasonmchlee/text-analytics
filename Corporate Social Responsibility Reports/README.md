@@ -52,7 +52,7 @@ Apple|	0.97	|0.66
 Microsoft has already made it clear the focus of their report is technology, so it understandable there isn’t a strong relationship with Apple. However, looking at this correlogram and the correlation coefficients it is clear that Apple and Google have extremely high correlations 0.97, which means that they are nearly perfectly correlated and have very consistent use of similar language. Since Apple and Google have a high correlation, this provides us with business insights that highlight industry trends. These results mean other high performing tech companies such as Facebook or Twitter could have similar language in their CSR reports, with their focus to also warrant language focused around data privacy and trust amongst their stakeholders.
 
 # Word Cloud, NRC Library
-Data privacy was a big topic in 2019, and it is important to see if this correlation remains consistent in other leading tech companies. The main company which came under excessive scrutiny for their data privacy laws in 2019 was Facebook. Surprisingly, Facebook does not have a CSR report published for their audience. Since Facebook does not have a CSR report, I extracted text from its sustainability page on their website. Below is a nrc library word cloud analyzing Facebook’s website.
+Data privacy was a big topic in 2019, and it is important to see if this correlation remains consistent in other leading tech companies. The main company which came under excessive scrutiny for their data privacy laws in 2019 was Facebook. Since Facebook does not have a CSR report, I extracted text from its sustainability page on their website. Below is a NRC library word cloud analyzing Facebook’s website.
 
 ### Facebook – Word Cloud, NRC Library
 <p align="center">
